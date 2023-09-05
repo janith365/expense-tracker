@@ -7,16 +7,24 @@ export default function App() {
   const [expenses, setExpenses] = useState(defaultExpenses);
 
   const addExpense = (expense) => {
-    console.log(expense);
-    expense = { ...expense, date: new Date(expense.date + "T00:00") };
-    console.log(expense);
     setExpenses((prevExpenses) => [...prevExpenses, expense]);
+    defaultExpenses.push(expense);
+  };
+
+  const filterExpenseHandler = (filterYear) => {
+    setExpenses(defaultExpenses);
+    if (filterYear !== "") {
+      const filteredExpenses = defaultExpenses.filter(
+        (expense) => expense.date.getFullYear().toString() === filterYear
+      );
+      setExpenses(filteredExpenses);
+    }
   };
 
   return (
     <div>
       <NewExpense addExpense={addExpense} />
-      <Expenses expenses={expenses} />
+      <Expenses expenses={expenses} filterExpenseHandler={filterExpenseHandler} />
     </div>
   );
 }

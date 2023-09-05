@@ -15,6 +15,7 @@ export default function ExpenseForm({ addExpense }) {
 
   const clickHandler = (e) => {
     e.preventDefault();
+    setExpense((prevExpense) => ({ ...prevExpense, date: new Date(expense.date + "T00:00") }));
     addExpense(expense);
     setExpense({ title: "", amount: "", date: "" });
   };
