@@ -7,7 +7,7 @@ export default function App() {
   const [expenses, setExpenses] = useState(defaultExpenses);
 
   const addExpense = (expense) => {
-    expense = { ...expense, date: new Date(expense.date + "T00:00") };
+    expense = { ...expense, amount: Number(expense.amount), date: new Date(expense.date + "T00:00") };
     setExpenses((prevExpenses) => [...prevExpenses, expense]);
     defaultExpenses.push(expense);
   };
